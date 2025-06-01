@@ -302,14 +302,14 @@ app.get('/api/empleados', async (req, res) => {
     //DB MYSQL
     if (db === 'mysql') {
       const conn = await mysql.createConnection(mysqlConfig);
-      const [rows] = await conn.execute('SELECT * FROM employed');
+      const [rows] = await conn.execute('SELECT * FROM employed ORDER BY id DESC');
       empleados = rows;
       await conn.end();
 
       //DB SQLSERVER
     } else if (db === 'sqlserver') {
       const pool = await sql.connect(sqlserverConfig);
-      const result = await pool.request().query('SELECT * FROM employed');
+      const result = await pool.request().query('SELECT * FROM employed ORDER BY id DESC');
       empleados = result.recordset;
       await pool.close();
 
@@ -327,7 +327,7 @@ app.get('/api/empleados', async (req, res) => {
                           correo,
                           departamento,
                           fecha_c
-                        FROM EMPLOYED
+                        FROM EMPLOYED ORDER BY id DESC
                       `);
 
       empleados = result.rows.map(row => {

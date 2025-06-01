@@ -143,7 +143,6 @@ CREATE TABLE employed (
 
 ### Sistema de Respaldo
 - Backup completo de todas las bases de datos
-- Backup individual por base de datos
 - Restauración de respaldos
 - Descarga de archivos de respaldo
 
